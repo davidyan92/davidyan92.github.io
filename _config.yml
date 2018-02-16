@@ -1,2 +1,2 @@
-name: David Yan
+permalink: /notes/:year/:month/:day/:title
 markdown: kramdown
