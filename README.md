@@ -1,1 +1,1 @@
-All contents on this site are credited to jmcglone.github.io
+Site is referenced from jmcglone.github.io
