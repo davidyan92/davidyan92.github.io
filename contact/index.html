@@ -8,77 +8,77 @@ contact: passive
 description: Capstone Project for David Yan
 ---
 <div class="cv">
-				<div itemscope itemtype="http://data-vocabulary.org/Person">
-				<h1>Capstone Project</h1>
-				<!-- <span itemprop="name">
-				</span>	 -->
-				<h2>Introduction</h2>
-				<!-- <address>
-				<span itemprop="affiliation"><strong>University of Michigan Libraries</strong><br></span>
-				<span itemprop="affiliation">Michigan Publishing<br></span>
-				839 Greene St 1210 Buhr Bldg<br>
-				Ann Arbor MI 48104-3209<br>
-				<abbr title="phone">P:</abbr> (734) 763-4260<br>
-				<span class="obfuscate">ude.hcimu@enolgcmj</span>
-				</address> -->
-				</div>
-				
-				<p>The goal of my capstone project is about identifying factors that can predict the relationship outcome of romantic relationships.</p>
+	<div itemscope itemtype="http://data-vocabulary.org/Person">
+	<h1>Capstone Project</h1>
+	<!-- <span itemprop="name">
+	</span>	 -->
+	<h2>Introduction</h2>
+	<!-- <address>
+	<span itemprop="affiliation"><strong>University of Michigan Libraries</strong><br></span>
+	<span itemprop="affiliation">Michigan Publishing<br></span>
+	839 Greene St 1210 Buhr Bldg<br>
+	Ann Arbor MI 48104-3209<br>
+	<abbr title="phone">P:</abbr> (734) 763-4260<br>
+	<span class="obfuscate">ude.hcimu@enolgcmj</span>
+	</address> -->
+	</div>
+	
+	<p>The goal of my capstone project is about identifying factors that can predict the relationship outcome of romantic relationships.</p>
 
-				<p>For my study, I obtained data from Stanford Social Science Data Collection, "How Couples Meet and Stay Together" Survey. This study collects survey responses from American adults on the fundamental nature of their relationship with their spouse or romantic partner. The study comes in the form of 5 waves, from 2009 - 2015, with each subsequent wave after wave 1 as a follow up survey on the relationship. Due to this constraint, my study can only predict outcome of romantic relationships up to a 6-year timeframe.</p>	
+	<p>For my study, I obtained data from Stanford Social Science Data Collection, "How Couples Meet and Stay Together" Survey. This study collects survey responses from American adults on the fundamental nature of their relationship with their spouse or romantic partner. The study comes in the form of 5 waves, from 2009 - 2015, with each subsequent wave after wave 1 as a follow up survey on the relationship. Due to this constraint, my study can only predict outcome of romantic relationships up to a 6-year timeframe.</p>	
 
-				<p>To achieve the objective of the project, I will be only using survey data from wave 1. The reason being that we are trying to do a prediction and using data from follow up surveys within the 6 year timeframe will be inappropriate.</p>
+	<p>To achieve the objective of the project, I will be only using survey data from wave 1. The reason being that we are trying to do a prediction and using data from follow up surveys within the 6 year timeframe will be inappropriate.</p>
 
-				<p>To gauge compatibility of couples, we are going to use "breakup" and "still together" as our target variable.</p>
+	<p>To gauge compatibility of couples, we are going to use "breakup" and "still together" as our target variable.</p>
 
-				<p>We will also make use of only predictors that reflect fundamental characteristics of both individuals.</p>
+	<p>We will also make use of only predictors that reflect fundamental characteristics of both individuals.</p>
 
-				<h2>Cleaning the Data</h2>
-				<!-- <p><strong><abbr title="Masters of Library and Information Science">MLIS</abbr>, Wayne State University, Detroit, MI, 2008</strong><br>
-				<a href="/files/McGlone-OpenAccessJournals-2008.pdf" title="Open Access Journals: Towards a Digital Commons for Scholarly Communication"><em>Open Access Journals: Towards a Digital Commons for Scholarly Communication</em> --> <!-- (PDF)</a></p> -->
-				
-				<p>There are initially 4002 rows of data. After sub setting those partnered and not deceased, we are left with 2982 rows. To make sure my data is accurate, we are only going to filter those rows with "breakup" and "still together" as values for the "qflag" question. To not leave out any important data points, those with deceased partners are included conditionally based on the value of the "qflag" question from the previous survey, whether its "breakup" or "still together".</p>
+	<h2>Cleaning the Data</h2>
+	<!-- <p><strong><abbr title="Masters of Library and Information Science">MLIS</abbr>, Wayne State University, Detroit, MI, 2008</strong><br>
+	<a href="/files/McGlone-OpenAccessJournals-2008.pdf" title="Open Access Journals: Towards a Digital Commons for Scholarly Communication"><em>Open Access Journals: Towards a Digital Commons for Scholarly Communication</em> --> <!-- (PDF)</a></p> -->
+	
+	<p>There are initially 4002 rows of data. After sub setting those partnered and not deceased, we are left with 2982 rows. To make sure my data is accurate, we are only going to filter those rows with "breakup" and "still together" as values for the "qflag" question. To not leave out any important data points, those with deceased partners are included conditionally based on the value of the "qflag" question from the previous survey, whether its "breakup" or "still together".</p>
 
-				<img class="img-responsive" src="/img/capstone/initial_dataset.png"/>
+	<img class="img-responsive" src="/img/capstone/initial_dataset.png"/>
 
-				<p>After doing the above, we end up with 231 features, 503 broken up couples and 1144 couples still together within the 6 years' timeframe.</p>
-				
-				<h2>Subjective Feature Reduction</h2>
+	<p>After doing the above, we end up with 231 features, 503 broken up couples and 1144 couples still together within the 6 years' timeframe.</p>
+	
+	<h2>Subjective Feature Reduction</h2>
 
-				<p>Features that are obviously irrelevant and redundant to the study are removed. E.G. ppppcmdate_yrmo, date of survey is irrelevant. Identical and combinatory features are also properly treated.</p>
+	<p>Features that are obviously irrelevant and redundant to the study are removed. E.G. ppppcmdate_yrmo, date of survey is irrelevant. Identical and combinatory features are also properly treated.</p>
 
-				<p>After subjectively reducing the features, we end up with 117 features.</p>
+	<p>After subjectively reducing the features, we end up with 117 features.</p>
 
-				<img class="img-responsive" src="/img/capstone/subj_ft_reduc.png"/>
+	<img class="img-responsive" src="/img/capstone/subj_ft_reduc.png"/>
 
-				<h2>Feature Cleaning</h2>
+	<h2>Feature Cleaning</h2>
 
-				<p>Low variance features (distinct value >= 95% of total feature count) and those with more than 70% null values are removed.</p>
+	<p>Low variance features (distinct value >= 95% of total feature count) and those with more than 70% null values are removed.</p>
 
-				<p>Categorical features are imputed with value of highest mode while continuous features are imputed with median.</p>
+	<p>Categorical features are imputed with value of highest mode while continuous features are imputed with median.</p>
 
-				<p>Ambiguous values such as "refuse to answer" are replaced with a sensible value. E.G. ambiguous values for political ideology are replaced with "no preference".</p>
+	<p>Ambiguous values such as "refuse to answer" are replaced with a sensible value. E.G. ambiguous values for political ideology are replaced with "no preference".</p>
 
-				<p>After cleaning, we end up with 48 features.</p>
+	<p>After cleaning, we end up with 48 features.</p>
 
-				<img class="img-responsive" src="/img/capstone/ft_cleaning.png"/>
-				
-				<h2>Feature Engineering</h2>
-				
-				<p>Features are combined to become more couple-centric. E.G. higher income earner and participant gender will give us a new feature that will tell us whether the male or the female is the higher income earner in the relationship.</p>
+	<img class="img-responsive" src="/img/capstone/ft_cleaning.png"/>
+	
+	<h2>Feature Engineering</h2>
+	
+	<p>Features are combined to become more couple-centric. E.G. higher income earner and participant gender will give us a new feature that will tell us whether the male or the female is the higher income earner in the relationship.</p>
 
-				<p>Finally we have our final dataset with 40 features.</p>
+	<p>Finally we have our final dataset with 40 features.</p>
 
-				<img class="img-responsive" src="/img/capstone/ft_engineer.png"/>
-				
-				<h2>Feature Selection</h2>
+	<img class="img-responsive" src="/img/capstone/ft_engineer.png"/>
+	
+	<h2>Feature Selection</h2>
 
-				<p>For feature selection I used lasso regularization to eliminate non-important features.</p>
+	<p>For feature selection I used lasso regularization to eliminate non-important features.</p>
 
-				<p>I first used patsy to expand my categorical variables into dummy variables first. Then standardized my predictors using StandardScaler. This will help the lasso algorithm to increase its ability to rank the coefficient importance by the relative magnitude of post-shrinkage coefficient estimates.</p>
+	<p>I first used patsy to expand my categorical variables into dummy variables first. Then standardized my predictors using StandardScaler. This will help the lasso algorithm to increase its ability to rank the coefficient importance by the relative magnitude of post-shrinkage coefficient estimates.</p>
 
-				<p>After carrying out feature selection, we end up with the following list of predictors:</p>
+	<p>After carrying out feature selection, we end up with the following list of predictors:</p>
 
-				<img class="img-responsive" src="/img/capstone/ft_sel.png"/>
+	<img class="img-responsive" src="/img/capstone/ft_sel.png"/>
 				
 </div>
