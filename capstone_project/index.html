@@ -22,7 +22,8 @@ description: Capstone Project for David Yan
 	<span class="obfuscate">ude.hcimu@enolgcmj</span>
 	</address> -->
 	</div>
-	
+	<br>
+	<br>
 	<p>Project goal:</p>
 	<ul>
 		<li>To identify factors that affect the outcome of romantic relationships</li>
@@ -53,98 +54,104 @@ description: Capstone Project for David Yan
 	</ol>
 	<br>
 	<br>
-	<p>For my study, I obtained data from Stanford Social Science Data Collection, "How Couples Meet and Stay Together" Survey. This study collects survey responses from American adults on the fundamental nature of their relationship with their spouse or romantic partner. The study comes in the form of 5 waves, from 2009 - 2015, with each subsequent wave after wave 1 as a follow up survey on the relationship. Due to this constraint, my study can only predict outcome of romantic relationships up to a 6-year timeframe.</p>	
-
+	<p>For my study, I obtained data from Stanford Social Science Data Collection, "How Couples Meet and Stay Together" Survey. This study collects survey responses from American adults on the fundamental nature of their relationship with their spouse or romantic partner. The study comes in the form of 5 waves, from 2009 - 2015, with each subsequent wave after wave 1 as a follow up survey on the relationship. Due to this constraint, my study can only predict outcome of romantic relationships up to a 6-year timeframe.</p>
+	<br>
 	<p>To achieve the objective of the project, I will be only using survey data from wave 1. The reason being that we are trying to do a prediction and using data from follow up surveys within the 6-year timeframe will be inappropriate.</p>
-
+	<br>
 	<p>We are going to use "breakup" and "still together" as our target variable for relationship outcome with the former meaning the couple has broken up and the latter meaning the couple has not broken up within the stipulated 6-year timeframe.</p>
-
+	<br>
+	<br>
 	<h2>Filtering the Data</h2>
 	<!-- <p><strong><abbr title="Masters of Library and Information Science">MLIS</abbr>, Wayne State University, Detroit, MI, 2008</strong><br>
 	<a href="/files/McGlone-OpenAccessJournals-2008.pdf" title="Open Access Journals: Towards a Digital Commons for Scholarly Communication"><em>Open Access Journals: Towards a Digital Commons for Scholarly Communication</em> --> <!-- (PDF)</a></p> -->
-	
+	<br>
 	<p>There are initially 4002 rows of data. After sub setting those partnered and not deceased, we are left with 2982 rows. To make sure my data is accurate, we are only going to filter those rows with "breakup" and "still together" as values for the "qflag" question. To not leave out any important data points, those with deceased partners are included conditionally based on the value of the "qflag" question from the previous survey, whether its "breakup" or "still together".</p>
-
+	<br>
 	<img class="img-responsive" src="/img/capstone/initial_dataset.png"/>
-
+	<br>
 	<p>We end up with 231 features, 503 broken up couples and 1144 couples still together within the 6 years' timeframe.</p>
-	
+	<br>
+	<br>
 	<h2>Subjective Feature Reduction</h2>
-
+	<br>
 	<p>Features that are obviously irrelevant and redundant to the study are removed. E.G. ppppcmdate_yrmo, date of survey is irrelevant. Identical and combinatory features are also properly treated.</p>
-
+	<br>
 	<p>After subjectively reducing the features, we end up with 117 features.</p>
-
+	<br>
 	<img class="img-responsive" src="/img/capstone/subj_ft_reduc.png"/>
-
+	<br>
+	<br>
 	<h2>Feature Cleaning</h2>
-
+	<br>
 	<p>Low variance features (distinct value >= 95% of total feature count) and those with more than 70% null values are removed.</p>
-
+	<br>
 	<p>Categorical features are imputed with value of highest mode while continuous features are imputed with median.</p>
-
+	<br>
 	<p>Ambiguous values such as "refuse to answer" are replaced with a sensible value. E.G. ambiguous values for political ideology are replaced with "no preference".</p>
-
+	<br>
 	<p>After cleaning, we end up with 48 features.</p>
-
+	<br>
 	<img class="img-responsive" src="/img/capstone/ft_cleaning.png"/>
-	
+	<br>
+	<br>
 	<h2>Feature Engineering</h2>
-	
+	<br>
 	<p>Features are combined to become more couple-centric. E.G. higher income earner and participant gender will give us a new feature that will tell us whether the male or the female is the higher income earner in the relationship.</p>
-
+	<br>
 	<p>Finally we have our final dataset with 40 features.</p>
-
+	<br>
 	<img class="img-responsive" src="/img/capstone/ft_engineer.png"/>
-	
+	<br>
+	<br>
 	<h2>Feature Selection</h2>
-
+	<br>
 	<p>For feature selection I used lasso regularization to eliminate non-important features.</p>
-
+	<br>
 	<p>I first used patsy to expand my categorical variables into dummy variables first. Then standardized my predictors using StandardScaler. This will help the lasso algorithm to increase its ability to rank the coefficient importance by the relative magnitude of post-shrinkage coefficient estimates.</p>
-
+	<br>
 	<p>After carrying out feature selection, we end up with the following list of predictors:</p>
-
+	<br>
 	<img class="img-responsive" src="/img/capstone/ft_sel.png"/>
-
+	<br>
+	<br>
 	<h2>Running the Models</h2>
-
+	<br>
 	<p>For my study I will be using supervised learning models to predict romantic relationship outcomes. The models that I will be using are: Logistic Regression, SGD Classifier, SVM Linear and XGBoost Classifier.</p>
-
+	<br>
 	<p>After splitting into test and training set, I run the 4 models on the dataset. To score the quality of each model, I will be using: Precision, Recall and F1 Score. The baseline accuracy for the dataset is 0.69.</p>
-	
+	<br>
 	<img class="img-responsive" src="/img/capstone/model_scores.png"/>
 
 	<!-- <img class="img-responsive" src="/img/capstone/ft_impt_summary.png"/> -->
-
+	<br>
 	<p>All the models performed above baseline with Logistic Regression and Linear Support Vector Machine performing the best.</p>
 
 	<br>
-
+	<br>
 	<img class="img-responsive" src="/img/capstone/ft_breakup.png"/>
 
 	<br>
-
+	<br>
 	<img class="img-responsive" src="/img/capstone/ft_not_breakup.png"/>
 
 	<br>
-
+	<br>
 	<img class="img-responsive" src="/img/capstone/ft_breakup_primary.png"/>
 
 	<br>
-
+	<br>
 	<img class="img-responsive" src="/img/capstone/ft_not_breakup_primary.png"/>
 
 	<br>
-
+	<br>
 	<h2>Conclusion</h2>
-
+	<br>
 	<p>To round it up, the goal of my project is to find out the the factors that negatively or positively affect the outcome of a relationship. Applying feature engineering and using the above machine learning methods, i am able to achieve that goal.</p>
-
+	<br>
 	<p>With a baseline score of 0.69, my prediction result of 0.78 is very encouraging and prompts further research.</p> 
-
+	<br>
 	<p>More advanced methods of machine learning pipeline can be explored to further increase the accuracy and reliability of the models. By gathering more couple-related data, more factors can also be uncovered.</p>
-
+	<br>
 	<p>With a systematic approach towards insight discovery in the dynamics of romantic relationships, we can ensure the sustainability and relevancy of the results gathered, thereby increasing our rate of success in helping to create more successful romantic relationships.</p>
-				
+			
 </div>
